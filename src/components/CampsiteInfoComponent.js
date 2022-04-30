@@ -6,7 +6,7 @@ import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
-const maxLength = len => val => !val ||(val.length <= len);
+const maxLength = len => val => !val || (val.length <= len);
 const minLength = len => val => val && (val.length >= len);
 
 function RenderCampsite({ campsite }) {
@@ -46,7 +46,7 @@ function RenderComments({ comments, postComment, campsiteId }) {
                                     </p>
                                 </div>
                             </Fade>);
-                        })
+                    })
                     }
                 </Stagger>
                 <CommentForm campsiteId={campsiteId} postComment={postComment} />
@@ -105,15 +105,15 @@ class CommentForm extends Component {
                                     maxLength: maxLength(15),
                                 }} />
                                 <Errors
-                                        className="text-danger"
-                                        model=".author"
-                                        show="touched"
-                                        component="div"
-                                        messages={{
-                                            minLength: 'Must be at least 2 characters',
-                                            maxLength: 'Must be 15 characters or less',
-                                        }}
-                                    />
+                                    className="text-danger"
+                                    model=".author"
+                                    show="touched"
+                                    component="div"
+                                    messages={{
+                                        minLength: 'Must be at least 2 characters',
+                                        maxLength: 'Must be 15 characters or less',
+                                    }}
+                                />
                             </div>
                             <div className="form-group">
                                 <Label htmlFor="text">Comment</Label>
@@ -164,8 +164,8 @@ function CampsiteInfo(props) {
                 </div>
                 <div className="row">
                     <RenderCampsite campsite={props.campsite} />
-                    <RenderComments 
-                        comments={props.comments} 
+                    <RenderComments
+                        comments={props.comments}
                         postComment={props.postComment}
                         campsiteId={props.campsite.id}
                     />
